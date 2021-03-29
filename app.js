@@ -44,10 +44,6 @@ app.use("/api", orderRoutes);
 const port = process.env.PORT || 5000;
 
 
-app.get("/",(req, res) => {
-    res.send("Connected");
-})
-
 //Server
 app.listen(port, ()=>{
     console.log(`app is running at ${port}`);
