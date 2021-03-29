@@ -7,13 +7,14 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 
+
 //My routes 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
-
+const path = require('path')
 
 //db connection
 mongoose.connect(process.env.DATABASE, {
@@ -42,6 +43,14 @@ app.use("/api", orderRoutes);
 
 //Port
 const port = process.env.PORT || 5000;
+
+
+// Making Build Folder as Public 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 //Server
